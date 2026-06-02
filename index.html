@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>超奇点 Logo 方案评分</title>
+  <style>
+    :root {
+      --ink: #151515;
+      --muted: #6f6c66;
+      --line: #d9d4ca;
+      --paper: #f4f1ea;
+      --card: #fffdf8;
+      --blue: #22a5f3;
+      --violet: #7347ee;
+      --gold: #c99a32;
+      --good: #0e7c66;
+      --shadow: 0 18px 46px rgba(30, 28, 24, 0.11);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(21,21,21,.035) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(180deg, #fbfaf7 0%, var(--paper) 100%);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(1440px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-main,
+    .winner {
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, .88);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    .hero-main {
+      padding: 34px 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 10px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue), var(--violet), var(--gold));
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 0;
+      max-width: 980px;
+      color: #3f3b36;
+      font-size: 17px;
+    }
+
+    .winner {
+      padding: 26px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      background:
+        linear-gradient(135deg, rgba(34,165,243,.12), rgba(115,71,238,.1) 52%, rgba(201,154,50,.14)),
+        var(--card);
+    }
+
+    .winner .label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .winner h2 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.08;
+    }
+
+    .score-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      color: white;
+      background: conic-gradient(from 210deg, var(--blue), var(--violet), var(--gold), var(--blue));
+      font-size: 34px;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 10px rgba(255,255,255,.2);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      margin: 22px 0 32px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 112px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 10px 28px rgba(30, 28, 24, .08);
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1.46;
+      object-fit: cover;
+      display: block;
+      background: #f7f6f1;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-body {
+      padding: 18px 18px 20px;
+    }
+
+    .card-head {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .rank {
+      flex: 0 0 auto;
+      min-width: 60px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      color: white;
+      background: #171717;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .total {
+      color: var(--good);
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .reason {
+      color: #4b4740;
+      font-size: 14px;
+      min-height: 64px;
+      margin: 0 0 16px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 7px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 92px 1fr 34px;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .track {
+      height: 8px;
+      border-radius: 99px;
+      background: #ece6db;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 10px 28px rgba(30, 28, 24, .08);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1040px;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      color: #302c27;
+      background: #ebe5da;
+      font-size: 13px;
+    }
+
+    td {
+      color: #36322d;
+      font-size: 14px;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:first-child td { font-weight: 800; }
+
+    .note {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(4, 1fr); }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 24px, 680px);
+        padding-top: 24px;
+      }
+
+      .hero-main { padding: 24px; }
+      .grid, .cards { grid-template-columns: 1fr; }
+      .bar { grid-template-columns: 82px 1fr 30px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">Logo evaluation / Shanghai SuperSingularity Technology</p>
+        <h1>超奇点 Logo 方案评分</h1>
+        <p class="intro">
+          本页将 D06「三界回环主推」与 PDF 中提取的 6 个方向放在同一套维度下比较。评分只看 logo 本体，不把背景氛围、场景看板或应用物料完整度计入综合分。
+        </p>
+      </div>
+      <aside class="winner">
+        <span class="label">综合最高</span>
+        <div class="score-badge">8.81</div>
+        <h2>D06 三界回环主推</h2>
+        <p class="intro">它的中心奇点、三段回环和负形关系最完整，作为独立符号仍然具备较强识别度与品牌资产感。</p>
+      </aside>
+    </section>
+
+    <section class="grid" aria-label="评分维度">
+      <div class="metric"><strong>品牌概念契合 18%</strong><span>奇点、数字 3、AI、科技公司的叙事是否统一。</span></div>
+      <div class="metric"><strong>轮廓识别度 20%</strong><span>离开背景和版式后，图形是否仍能被快速记住。</span></div>
+      <div class="metric"><strong>小尺寸可读性 16%</strong><span>缩小到 favicon、印章、社媒头像后的保真程度。</span></div>
+      <div class="metric"><strong>结构原创性 14%</strong><span>是否避开泛科技模板，是否有独特结构。</span></div>
+      <div class="metric"><strong>标志简洁度 12%</strong><span>图形是否够克制、易复刻，细节是否不过度依赖大图。</span></div>
+      <div class="metric"><strong>科技现代感 10%</strong><span>视觉语言是否符合 AI 与前沿科技语境。</span></div>
+      <div class="metric"><strong>字标适配度 10%</strong><span>图形与中文、英文、口号组合后的比例和完成度。</span></div>
+    </section>
+
+    <section class="cards" id="cards" aria-label="候选方案卡片"></section>
+
+    <section class="table-wrap" aria-label="详细评分表">
+      <table>
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>方案</th>
+            <th>综合分</th>
+            <th>品牌概念</th>
+            <th>识别度</th>
+            <th>小尺寸</th>
+            <th>原创性</th>
+            <th>简洁度</th>
+            <th>科技感</th>
+            <th>字标适配</th>
+            <th>判断</th>
+          </tr>
+        </thead>
+        <tbody id="scoreRows"></tbody>
+      </table>
+    </section>
+
+    <p class="note">
+      结论：单纯看 logo 本体，D06 仍是综合最高；PDF 的「数字 3 优化方案」排名第二，优势是简洁和数字 3 直观，但独特性与品牌资产感仍略弱于 D06。
+    </p>
+  </main>
+
+  <script>
+    const metrics = [
+      ["concept", "品牌概念", 0.18],
+      ["memory", "轮廓识别", 0.20],
+      ["small", "小尺寸", 0.16],
+      ["distinct", "结构原创", 0.14],
+      ["simple", "简洁度", 0.12],
+      ["tech", "科技感", 0.10],
+      ["finish", "字标适配", 0.10]
+    ];
+
+    const candidates = [
+      {
+        name: "D06 三界回环主推",
+        image: "score-report-assets/candidate-d06-main.png",
+        scores: { concept: 9.3, memory: 8.9, small: 8.5, distinct: 9.0, simple: 8.0, tech: 8.8, finish: 9.0 },
+        reason: "三段回环围绕中心奇点，负形关系完整；图形本身有品牌资产感，只是细节比数字 3 优化方案稍复杂。"
+      },
+      {
+        name: "PDF 数字 3 优化方案",
+        image: "score-report-assets/candidate-pdf-3-optimized.png",
+        scores: { concept: 8.7, memory: 8.8, small: 8.7, distinct: 7.8, simple: 8.8, tech: 8.5, finish: 8.3 },
+        reason: "数字 3 直接、轨迹线条清爽，缩小后更稳；但符号略接近通用科技图形，独特资产感稍弱。"
+      },
+      {
+        name: "PDF 数字 3 原方案",
+        image: "score-report-assets/candidate-pdf-3-original.png",
+        scores: { concept: 8.2, memory: 8.1, small: 8.0, distinct: 6.9, simple: 8.0, tech: 7.9, finish: 7.7 },
+        reason: "数字 3 记忆直接，渐变具科技感；但立体飘带语汇较常见，作为主标识的识别壁垒不够高。"
+      },
+      {
+        name: "PDF 三光轨方案",
+        image: "score-report-assets/candidate-pdf-light-tracks.png",
+        scores: { concept: 8.0, memory: 7.7, small: 7.5, distinct: 7.0, simple: 8.4, tech: 8.2, finish: 7.6 },
+        reason: "数据流、三段并行的表达清晰且简洁；静态标志容易显得像装饰条，品牌符号性偏弱。"
+      },
+      {
+        name: "PDF 双向箭头方案",
+        image: "score-report-assets/candidate-pdf-arrow.png",
+        scores: { concept: 7.4, memory: 7.6, small: 8.1, distinct: 6.8, simple: 8.6, tech: 8.0, finish: 7.6 },
+        reason: "方向感和前瞻性明确，缩小后稳定；但与奇点、数字 3 的连接较间接，更像通用增长或播放符号。"
+      },
+      {
+        name: "PDF 黑洞奇点方案",
+        image: "score-report-assets/candidate-pdf-blackhole.png",
+        scores: { concept: 9.1, memory: 8.0, small: 6.8, distinct: 8.2, simple: 6.9, tech: 8.1, finish: 7.2 },
+        reason: "单看符号时奇点和黑洞概念很强，也有差异化；但环形和中心结构细节偏多，小尺寸保真不足。"
+      },
+      {
+        name: "PDF 生命智能涟漪",
+        image: "score-report-assets/candidate-pdf-ripple.png",
+        scores: { concept: 6.6, memory: 8.1, small: 7.5, distinct: 8.0, simple: 7.2, tech: 6.2, finish: 6.8 },
+        reason: "人物与数字 3 的记忆点强，也比较独特；但偏生命、陪伴、涟漪情绪，和 AI 科技公司的理性前沿感不够贴合。"
+      }
+    ];
+
+    function weightedTotal(scores) {
+      return metrics.reduce((sum, [key, , weight]) => sum + scores[key] * weight, 0);
+    }
+
+    const ranked = candidates
+      .map(item => ({ ...item, total: weightedTotal(item.scores) }))
+      .sort((a, b) => b.total - a.total);
+
+    const cards = document.getElementById("cards");
+    const rows = document.getElementById("scoreRows");
+
+    ranked.forEach((item, index) => {
+      const rank = index + 1;
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        <img class="thumb" src="${item.image}" alt="${item.name}">
+        <div class="card-body">
+          <div class="card-head">
+            <h3>${item.name}</h3>
+            <div class="rank">#${rank}</div>
+          </div>
+          <div class="total">${item.total.toFixed(2)}</div>
+          <p class="reason">${item.reason}</p>
+          <div class="bars">
+            ${metrics.map(([key, label]) => `
+              <div class="bar">
+                <span>${label}</span>
+                <div class="track"><div class="fill" style="width:${item.scores[key] * 10}%"></div></div>
+                <b>${item.scores[key].toFixed(1)}</b>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+      cards.appendChild(card);
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>#${rank}</td>
+        <td>${item.name}</td>
+        <td>${item.total.toFixed(2)}</td>
+        ${metrics.map(([key]) => `<td>${item.scores[key].toFixed(1)}</td>`).join("")}
+        <td>${item.reason}</td>
+      `;
+      rows.appendChild(row);
+    });
+  </script>
+</body>
+</html>
