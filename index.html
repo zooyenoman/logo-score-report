@@ -228,11 +228,22 @@
 
     .bar {
       display: grid;
-      grid-template-columns: 92px 1fr 34px;
-      gap: 8px;
-      align-items: center;
+      gap: 5px;
       font-size: 12px;
       color: var(--muted);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 42px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .bar-note {
+      margin: 0;
+      color: #59544c;
+      line-height: 1.45;
     }
 
     .track {
@@ -303,7 +314,7 @@
 
       .hero-main { padding: 24px; }
       .grid, .cards { grid-template-columns: 1fr; }
-      .bar { grid-template-columns: 82px 1fr 30px; }
+      .bar-row { grid-template-columns: 82px 1fr 40px; }
     }
   </style>
 </head>
@@ -314,25 +325,25 @@
         <p class="eyebrow">Logo evaluation / Shanghai SuperSingularity Technology</p>
         <h1>超奇点 Logo 方案评分</h1>
         <p class="intro">
-          本页将 D06「三界回环主推」与 PDF 中提取的 6 个方向放在同一套维度下比较。评分只看 logo 本体，每项满分 5 分，综合分保留 1 位小数，不把背景氛围、场景看板或应用物料完整度计入综合分。
+          本页将 D06「三界回环主推」与 PDF 中提取的 6 个方向放在同一套维度下比较。评分只看 logo 本体，每项满分 10 分，总分按 7 项直接相加，不把背景氛围、场景看板或应用物料完整度计入总分。
         </p>
       </div>
       <aside class="winner">
-        <span class="label">综合最高</span>
-        <div class="score-badge">3.9</div>
+        <span class="label">总分最高</span>
+        <div class="score-badge">52/70</div>
         <h2>D06 三界回环主推</h2>
         <p class="intro">它的中心奇点、三段回环和负形关系最完整，作为独立符号仍然具备较强识别度与品牌资产感。</p>
       </aside>
     </section>
 
     <section class="grid" aria-label="评分维度">
-      <div class="metric"><strong>品牌概念契合</strong><span>满分 5 分：奇点、数字 3、AI、科技公司的叙事是否统一。</span></div>
-      <div class="metric"><strong>轮廓识别度</strong><span>满分 5 分：离开背景和版式后，图形是否仍能被快速记住。</span></div>
-      <div class="metric"><strong>小尺寸可读性</strong><span>满分 5 分：缩小到 favicon、印章、社媒头像后的保真程度。</span></div>
-      <div class="metric"><strong>结构原创性</strong><span>满分 5 分：是否避开泛科技模板，是否有独特结构。</span></div>
-      <div class="metric"><strong>标志简洁度</strong><span>满分 5 分：图形是否够克制、易复刻，细节是否不过度依赖大图。</span></div>
-      <div class="metric"><strong>科技现代感</strong><span>满分 5 分：视觉语言是否符合 AI 与前沿科技语境。</span></div>
-      <div class="metric"><strong>字标适配度</strong><span>满分 5 分：图形与中文、英文、口号组合后的比例和完成度。</span></div>
+      <div class="metric"><strong>品牌概念契合</strong><span>满分 10 分：奇点、数字 3、AI、科技公司的叙事是否统一。</span></div>
+      <div class="metric"><strong>轮廓识别度</strong><span>满分 10 分：离开背景和版式后，图形是否仍能被快速记住。</span></div>
+      <div class="metric"><strong>小尺寸可读性</strong><span>满分 10 分：缩小到 favicon、印章、社媒头像后的保真程度。</span></div>
+      <div class="metric"><strong>结构原创性</strong><span>满分 10 分：是否避开泛科技模板，是否有独特结构。</span></div>
+      <div class="metric"><strong>标志简洁度</strong><span>满分 10 分：图形是否够克制、易复刻，细节是否不过度依赖大图。</span></div>
+      <div class="metric"><strong>科技现代感</strong><span>满分 10 分：视觉语言是否符合 AI 与前沿科技语境。</span></div>
+      <div class="metric"><strong>字标适配度</strong><span>满分 10 分：图形与中文、英文、口号组合后的比例和完成度。</span></div>
     </section>
 
     <section class="cards" id="cards" aria-label="候选方案卡片"></section>
@@ -343,7 +354,7 @@
           <tr>
             <th>排名</th>
             <th>方案</th>
-            <th>综合分</th>
+            <th>总分</th>
             <th>品牌概念</th>
             <th>识别度</th>
             <th>小尺寸</th>
@@ -359,76 +370,139 @@
     </section>
 
     <p class="note">
-      结论：单纯看 logo 本体，D06 仍是综合最高；PDF 的「数字 3 优化方案」排名第二，优势是简洁和数字 3 直观，但独特性与品牌资产感仍略弱于 D06。
+      结论：单纯看 logo 本体，D06 仍是总分最高；PDF 的「数字 3 优化方案」排名第二，优势是简洁和数字 3 直观，但独特性与品牌资产感仍略弱于 D06。
     </p>
   </main>
 
   <script>
     const metrics = [
-      ["concept", "品牌概念", 0.18],
-      ["memory", "轮廓识别", 0.20],
-      ["small", "小尺寸", 0.16],
-      ["distinct", "结构原创", 0.14],
-      ["simple", "简洁度", 0.12],
-      ["tech", "科技感", 0.10],
-      ["finish", "字标适配", 0.10]
+      ["concept", "品牌概念"],
+      ["memory", "轮廓识别"],
+      ["small", "小尺寸"],
+      ["distinct", "结构原创"],
+      ["simple", "简洁度"],
+      ["tech", "科技感"],
+      ["finish", "字标适配"]
     ];
 
     const candidates = [
       {
         name: "D06 三界回环主推",
         image: "score-report-assets/candidate-d06-main.png",
-        scores: { concept: 4, memory: 4, small: 4, distinct: 4, simple: 3, tech: 4, finish: 4 },
+        scores: { concept: 8, memory: 8, small: 7, distinct: 8, simple: 6, tech: 7, finish: 8 },
+        notes: {
+          concept: "三段回环和中心奇点能对应品牌叙事，但数字 3 的直读性还可以更明确。",
+          memory: "整体外轮廓稳定，有独立符号感，但局部负形需要看久一点才能读懂。",
+          small: "缩小后中心圆点仍清楚，外部三段结构会损失一部分层次。",
+          distinct: "比常见 AI 渐变标志更有结构辨识度，但还不是一眼不可替代。",
+          simple: "符号完成度高，不过交叠和负形较多，复刻成本偏高。",
+          tech: "理性、几何、系统化的气质成立，但科技感主要靠结构而非极简速度感。",
+          finish: "图形和中英文字标的比例最稳，作为主标志完成度最高。"
+        },
         reason: "三段回环围绕中心奇点，负形关系完整；图形本身有品牌资产感，只是细节比数字 3 优化方案稍复杂。"
       },
       {
         name: "PDF 数字 3 优化方案",
         image: "score-report-assets/candidate-pdf-3-optimized.png",
-        scores: { concept: 4, memory: 4, small: 4, distinct: 3, simple: 4, tech: 4, finish: 3 },
+        scores: { concept: 8, memory: 8, small: 8, distinct: 6, simple: 8, tech: 7, finish: 6 },
+        notes: {
+          concept: "数字 3 和轨迹线条的表达直接，但奇点概念不如 D06 集中。",
+          memory: "轮廓容易记住，优势是直接，短板是和通用科技图形相似。",
+          small: "大形简洁，缩小后比复杂方案更稳定。",
+          distinct: "渐变数字 3 的方向不罕见，品牌专属感偏中等。",
+          simple: "删繁就简做得好，图形复刻和传播成本低。",
+          tech: "流线和渐变有科技感，但视觉语言偏常规。",
+          finish: "图形与字标能搭配，但图标本身的精致度还需要继续打磨。"
+        },
         reason: "数字 3 直接、轨迹线条清爽，缩小后更稳；但符号略接近通用科技图形，独特资产感稍弱。"
       },
       {
         name: "PDF 数字 3 原方案",
         image: "score-report-assets/candidate-pdf-3-original.png",
-        scores: { concept: 3, memory: 3, small: 3, distinct: 2, simple: 3, tech: 3, finish: 3 },
+        scores: { concept: 6, memory: 6, small: 6, distinct: 4, simple: 6, tech: 6, finish: 5 },
+        notes: {
+          concept: "数字 3 主题明确，但 AI 与奇点的联系主要靠文案补足。",
+          memory: "形状可读，但飘带式数字 3 的记忆点不够专属。",
+          small: "大轮廓能保留，渐变和分层细节缩小后会变弱。",
+          distinct: "立体渐变飘带较常见，容易落入泛科技模板。",
+          simple: "图形不复杂，但空间层次让它不像真正的极简标志。",
+          tech: "渐变带来科技感，不过表达方式偏早期互联网视觉。",
+          finish: "字标组合基本成立，但图形和文字的气质还不够统一。"
+        },
         reason: "数字 3 记忆直接，渐变具科技感；但立体飘带语汇较常见，作为主标识的识别壁垒不够高。"
       },
       {
         name: "PDF 三光轨方案",
         image: "score-report-assets/candidate-pdf-light-tracks.png",
-        scores: { concept: 3, memory: 3, small: 3, distinct: 2, simple: 4, tech: 3, finish: 3 },
+        scores: { concept: 6, memory: 5, small: 6, distinct: 4, simple: 7, tech: 6, finish: 5 },
+        notes: {
+          concept: "三段光轨能解释数据流，但和品牌名中的奇点关系较弱。",
+          memory: "横向条带容易看懂，却不容易形成强主标识记忆。",
+          small: "简洁形态利于缩小，但圆点和浅色尾部会丢失细节。",
+          distinct: "作为动效元素不错，作为 logo 本体的独特性不足。",
+          simple: "结构克制、复制容易，是它最明显的优势。",
+          tech: "数据轨迹感明确，但科技表达比较直白。",
+          finish: "和字标组合可用，但图形主次和重心还不够强。"
+        },
         reason: "数据流、三段并行的表达清晰且简洁；静态标志容易显得像装饰条，品牌符号性偏弱。"
       },
       {
         name: "PDF 双向箭头方案",
         image: "score-report-assets/candidate-pdf-arrow.png",
-        scores: { concept: 3, memory: 3, small: 4, distinct: 2, simple: 4, tech: 3, finish: 3 },
+        scores: { concept: 5, memory: 6, small: 7, distinct: 4, simple: 8, tech: 6, finish: 5 },
+        notes: {
+          concept: "方向感成立，但奇点和数字 3 的品牌内核表达偏弱。",
+          memory: "箭头轮廓容易识别，不过容易被理解成播放或增长符号。",
+          small: "几何块面清晰，缩小后的稳定性较好。",
+          distinct: "双箭头不是新鲜结构，专属识别度有限。",
+          simple: "形态非常克制，制作和跨媒介使用都轻松。",
+          tech: "速度和前进感明确，但 AI 属性不够具体。",
+          finish: "和字标放在一起可用，但图形气质略偏工具类产品。"
+        },
         reason: "方向感和前瞻性明确，缩小后稳定；但与奇点、数字 3 的连接较间接，更像通用增长或播放符号。"
       },
       {
         name: "PDF 黑洞奇点方案",
         image: "score-report-assets/candidate-pdf-blackhole.png",
-        scores: { concept: 4, memory: 3, small: 2, distinct: 4, simple: 2, tech: 3, finish: 2 },
+        scores: { concept: 8, memory: 6, small: 4, distinct: 7, simple: 4, tech: 6, finish: 4 },
+        notes: {
+          concept: "奇点和黑洞概念最直观，但数字 3 与 AI 的表达不够自然。",
+          memory: "白色环形有冲击力，不过脱离背景后识别会下降。",
+          small: "环形和中心切割细节较多，缩小后容易糊成抽象图案。",
+          distinct: "概念差异化较强，但更像视觉主画面而非标准 logo。",
+          simple: "对背景和大尺寸展示依赖明显，标志简洁度不足。",
+          tech: "深空气质有前沿感，但科技公司属性不够理性克制。",
+          finish: "字标组合依赖氛围图，单独作为系统标识还不成熟。"
+        },
         reason: "单看符号时奇点和黑洞概念很强，也有差异化；但环形和中心结构细节偏多，小尺寸保真不足。"
       },
       {
         name: "PDF 生命智能涟漪",
         image: "score-report-assets/candidate-pdf-ripple.png",
-        scores: { concept: 2, memory: 3, small: 3, distinct: 3, simple: 3, tech: 2, finish: 2 },
+        scores: { concept: 4, memory: 6, small: 6, distinct: 6, simple: 5, tech: 4, finish: 4 },
+        notes: {
+          concept: "生命和智能陪伴的叙事成立，但和超奇点科技主品牌不够贴合。",
+          memory: "人像和数字 3 结合有记忆点，但方向容易偏情感产品。",
+          small: "头像轮廓可保留，底部涟漪缩小后会明显丢失。",
+          distinct: "人物侧影让它有区别度，但也削弱了科技公司的中性气质。",
+          simple: "图形元素较多，黑底图标化后才比较完整。",
+          tech: "科技感较弱，更像生命、陪伴或公益方向。",
+          finish: "字标组合能看，但中英文气质与图形情绪不够一致。"
+        },
         reason: "人物与数字 3 的记忆点强，也比较独特；但偏生命、陪伴、涟漪情绪，和 AI 科技公司的理性前沿感不够贴合。"
       }
     ];
 
-    function weightedTotal(scores) {
-      return metrics.reduce((sum, [key, , weight]) => sum + scores[key] * weight, 0);
+    function totalScore(scores) {
+      return metrics.reduce((sum, [key]) => sum + scores[key], 0);
     }
 
     function displayScore(score) {
-      return score.toFixed(1);
+      return `${score}/70`;
     }
 
     const ranked = candidates
-      .map(item => ({ ...item, total: weightedTotal(item.scores) }))
+      .map(item => ({ ...item, total: totalScore(item.scores) }))
       .sort((a, b) => b.total - a.total);
 
     const cards = document.getElementById("cards");
@@ -450,9 +524,12 @@
           <div class="bars">
             ${metrics.map(([key, label]) => `
               <div class="bar">
-                <span>${label}</span>
-                <div class="track"><div class="fill" style="width:${item.scores[key] * 20}%"></div></div>
-                <b>${item.scores[key]}</b>
+                <div class="bar-row">
+                  <span>${label}</span>
+                  <div class="track"><div class="fill" style="width:${item.scores[key] * 10}%"></div></div>
+                  <b>${item.scores[key]}/10</b>
+                </div>
+                <p class="bar-note">${item.notes[key]}</p>
               </div>
             `).join("")}
           </div>
