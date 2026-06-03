@@ -314,12 +314,12 @@
         <p class="eyebrow">Logo evaluation / Shanghai SuperSingularity Technology</p>
         <h1>超奇点 Logo 方案评分</h1>
         <p class="intro">
-          本页将 D06「三界回环主推」与 PDF 中提取的 6 个方向放在同一套维度下比较。评分只看 logo 本体，每项满分 5 分，不把背景氛围、场景看板或应用物料完整度计入综合分。
+          本页将 D06「三界回环主推」与 PDF 中提取的 6 个方向放在同一套维度下比较。评分只看 logo 本体，每项满分 5 分，综合分保留 1 位小数，不把背景氛围、场景看板或应用物料完整度计入综合分。
         </p>
       </div>
       <aside class="winner">
         <span class="label">综合最高</span>
-        <div class="score-badge">5</div>
+        <div class="score-badge">3.9</div>
         <h2>D06 三界回环主推</h2>
         <p class="intro">它的中心奇点、三段回环和负形关系最完整，作为独立符号仍然具备较强识别度与品牌资产感。</p>
       </aside>
@@ -378,43 +378,43 @@
       {
         name: "D06 三界回环主推",
         image: "score-report-assets/candidate-d06-main.png",
-        scores: { concept: 5, memory: 5, small: 4, distinct: 5, simple: 4, tech: 5, finish: 5 },
+        scores: { concept: 4, memory: 4, small: 4, distinct: 4, simple: 3, tech: 4, finish: 4 },
         reason: "三段回环围绕中心奇点，负形关系完整；图形本身有品牌资产感，只是细节比数字 3 优化方案稍复杂。"
       },
       {
         name: "PDF 数字 3 优化方案",
         image: "score-report-assets/candidate-pdf-3-optimized.png",
-        scores: { concept: 5, memory: 4, small: 5, distinct: 4, simple: 5, tech: 4, finish: 4 },
+        scores: { concept: 4, memory: 4, small: 4, distinct: 3, simple: 4, tech: 4, finish: 3 },
         reason: "数字 3 直接、轨迹线条清爽，缩小后更稳；但符号略接近通用科技图形，独特资产感稍弱。"
       },
       {
         name: "PDF 数字 3 原方案",
         image: "score-report-assets/candidate-pdf-3-original.png",
-        scores: { concept: 4, memory: 4, small: 4, distinct: 3, simple: 4, tech: 4, finish: 4 },
+        scores: { concept: 3, memory: 3, small: 3, distinct: 2, simple: 3, tech: 3, finish: 3 },
         reason: "数字 3 记忆直接，渐变具科技感；但立体飘带语汇较常见，作为主标识的识别壁垒不够高。"
       },
       {
         name: "PDF 三光轨方案",
         image: "score-report-assets/candidate-pdf-light-tracks.png",
-        scores: { concept: 4, memory: 4, small: 4, distinct: 3, simple: 4, tech: 4, finish: 4 },
+        scores: { concept: 3, memory: 3, small: 3, distinct: 2, simple: 4, tech: 3, finish: 3 },
         reason: "数据流、三段并行的表达清晰且简洁；静态标志容易显得像装饰条，品牌符号性偏弱。"
       },
       {
         name: "PDF 双向箭头方案",
         image: "score-report-assets/candidate-pdf-arrow.png",
-        scores: { concept: 4, memory: 4, small: 4, distinct: 3, simple: 5, tech: 4, finish: 4 },
+        scores: { concept: 3, memory: 3, small: 4, distinct: 2, simple: 4, tech: 3, finish: 3 },
         reason: "方向感和前瞻性明确，缩小后稳定；但与奇点、数字 3 的连接较间接，更像通用增长或播放符号。"
       },
       {
         name: "PDF 黑洞奇点方案",
         image: "score-report-assets/candidate-pdf-blackhole.png",
-        scores: { concept: 5, memory: 4, small: 3, distinct: 4, simple: 3, tech: 4, finish: 3 },
+        scores: { concept: 4, memory: 3, small: 2, distinct: 4, simple: 2, tech: 3, finish: 2 },
         reason: "单看符号时奇点和黑洞概念很强，也有差异化；但环形和中心结构细节偏多，小尺寸保真不足。"
       },
       {
         name: "PDF 生命智能涟漪",
         image: "score-report-assets/candidate-pdf-ripple.png",
-        scores: { concept: 3, memory: 4, small: 4, distinct: 4, simple: 4, tech: 3, finish: 3 },
+        scores: { concept: 2, memory: 3, small: 3, distinct: 3, simple: 3, tech: 2, finish: 2 },
         reason: "人物与数字 3 的记忆点强，也比较独特；但偏生命、陪伴、涟漪情绪，和 AI 科技公司的理性前沿感不够贴合。"
       }
     ];
@@ -424,7 +424,7 @@
     }
 
     function displayScore(score) {
-      return Math.round(score);
+      return score.toFixed(1);
     }
 
     const ranked = candidates
